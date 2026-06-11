@@ -52,5 +52,3 @@ async function loadNumbers() {
             document.getElementById("slot22").innerHTML = item.number;
     });
 }
-
-loadNumbers();
