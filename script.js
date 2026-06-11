@@ -1,11 +1,4 @@
-const SUPABASE_URL = "https://botfmbszxqpnelyiccdi.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJvdGZtYnN6eHFwbmVseWljY2RpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgzMTksImV4cCI6MjA5NjY4NDMxOX0.AMyQ1LlyS58qwqCmAiqFv7xlhL9R_wJP5G48wuR5AHQ";
-
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
-window.onload = async function () {
+window.onload = function () {
     document.getElementById("loading").style.display = "none";
     document.getElementById("app").style.display = "block";
 
@@ -20,34 +13,11 @@ window.onload = async function () {
 
     updateTime();
     setInterval(updateTime, 1000);
-const { data, error } = await supabaseClient
-    .from("number")
-    .select("*")
-    .limit(10);
-console.log(data);
-    alert("DATA = " + JSON.stringify(data));
-    if (data) {
-    data.forEach(row => {
-        if (row.slot === "12PM")
-            document.getElementById("slot12").innerHTML = row.number;
 
-        if (row.slot === "2PM")
-            document.getElementById("slot14").innerHTML = row.number;
-
-        if (row.slot === "4PM")
-            document.getElementById("slot16").innerHTML = row.number;
-
-        if (row.slot === "6PM")
-            document.getElementById("slot18").innerHTML = row.number;
-
-        if (row.slot === "8PM")
-            document.getElementById("slot20").innerHTML = row.number;
-
-        if (row.slot === "10PM")
-            document.getElementById("slot22").innerHTML = row.number;
-    });
-}
-alert(JSON.stringify(error));
-console.log(error);
-    alert("ERROR = " + JSON.stringify(error));
+    document.getElementById("slot12").innerHTML = "47";
+    document.getElementById("slot14").innerHTML = "83";
+    document.getElementById("slot16").innerHTML = "15";
+    document.getElementById("slot18").innerHTML = "92";
+    document.getElementById("slot20").innerHTML = "34";
+    document.getElementById("slot22").innerHTML = "76";
 };
