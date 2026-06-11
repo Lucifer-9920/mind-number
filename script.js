@@ -21,3 +21,36 @@ function updateTime() {
 
 setInterval(updateTime, 1000);
 updateTime();
+async function loadNumbers() {
+    const { data, error } = await supabase
+        .from("number")
+        .select("*");
+
+    if (error) {
+        console.error("Supabase Error:", error);
+        return;
+    }
+
+    data.forEach(item => {
+
+        if (item.slot === "12PM")
+            document.getElementById("slot12").innerHTML = item.number;
+
+        if (item.slot === "2PM")
+            document.getElementById("slot14").innerHTML = item.number;
+
+        if (item.slot === "4PM")
+            document.getElementById("slot16").innerHTML = item.number;
+
+        if (item.slot === "6PM")
+            document.getElementById("slot18").innerHTML = item.number;
+
+        if (item.slot === "8PM")
+            document.getElementById("slot20").innerHTML = item.number;
+
+        if (item.slot === "10PM")
+            document.getElementById("slot22").innerHTML = item.number;
+    });
+}
+
+loadNumbers();
