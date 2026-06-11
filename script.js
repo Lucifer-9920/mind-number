@@ -5,7 +5,7 @@ const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
-window.onload = function () {
+window.onload = async function () {
     document.getElementById("loading").style.display = "none";
     document.getElementById("app").style.display = "block";
 
@@ -20,5 +20,10 @@ window.onload = function () {
 
     updateTime();
     setInterval(updateTime, 1000);
-    document.getElementById("slot12").innerHTML = "99";
+    const { data, error } = await supabaseClient
+    .from("number")
+    .select("*");
+
+console.log(data);
+console.log(error);
 };
