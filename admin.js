@@ -7,7 +7,7 @@ const supabaseClient = window.supabase.createClient(
 );
 
 async function saveNumbers() {
-
+    alert("Button Clicked");
     const updates = [
         { slot: "12PM", value: document.getElementById("n12").value },
         { slot: "2PM", value: document.getElementById("n14").value },
