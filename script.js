@@ -23,7 +23,7 @@ window.onload = async function () {
     const { data, error } = await supabaseClient
     .from("number")
     .select("*");
-
+    .limite(10);
 console.log(data);
     alert("DATA = " + JSON.stringify(data));
     if (data) {
