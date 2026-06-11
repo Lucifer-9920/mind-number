@@ -20,5 +20,5 @@ window.onload = function () {
 
     updateTime();
     setInterval(updateTime, 1000);
+    document.getElementById("slot12").innerHTML = "99";
 };
-document.getElementById("slot12").innerHTML = "99";
