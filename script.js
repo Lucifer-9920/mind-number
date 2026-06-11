@@ -25,5 +25,26 @@ window.onload = async function () {
     .select("*");
 
 console.log(data);
+    if (data) {
+    data.forEach(row => {
+        if (row.slot === "12PM")
+            document.getElementById("slot12").innerHTML = row.number;
+
+        if (row.slot === "2PM")
+            document.getElementById("slot14").innerHTML = row.number;
+
+        if (row.slot === "4PM")
+            document.getElementById("slot16").innerHTML = row.number;
+
+        if (row.slot === "6PM")
+            document.getElementById("slot18").innerHTML = row.number;
+
+        if (row.slot === "8PM")
+            document.getElementById("slot20").innerHTML = row.number;
+
+        if (row.slot === "10PM")
+            document.getElementById("slot22").innerHTML = row.number;
+    });
+}
 console.log(error);
 };
