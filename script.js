@@ -25,6 +25,7 @@ window.onload = async function () {
     .select("*");
 
 console.log(data);
+    alert("DATA = " + JSON.stringify(data));
     if (data) {
     data.forEach(row => {
         if (row.slot === "12PM")
@@ -48,4 +49,5 @@ console.log(data);
 }
 alert(JSON.stringify(error));
 console.log(error);
+    alert("ERROR = " + JSON.stringify(error));
 };
