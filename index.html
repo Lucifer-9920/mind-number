@@ -1,9 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mind Number</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Mind Number</h1>
+
+<div id="loading">
+    <h1>Mind Number</h1>
+    <p>Loading...</p>
+</div>
+
+<div id="app" style="display:none;">
+
+    <div class="header">
+        <h1>Mind Number</h1>
+        <div id="liveDateTime"></div>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>12 PM</h2>
+            <div id="slot12">🔒 Locked</div>
+            <small>Opens at 12:00 PM</small>
+        </div>
+
+        <div class="card">
+            <h2>2 PM</h2>
+            <div id="slot14">🔒 Locked</div>
+            <small>Opens at 2:00 PM</small>
+        </div>
+
+        <div class="card">
+            <h2>4 PM</h2>
+            <div id="slot16">🔒 Locked</div>
+            <small>Opens at 4:00 PM</small>
+        </div>
+
+        <div class="card">
+            <h2>6 PM</h2>
+            <div id="slot18">🔒 Locked</div>
+            <small>Opens at 6:00 PM</small>
+        </div>
+
+        <div class="card">
+            <h2>8 PM</h2>
+            <div id="slot20">🔒 Locked</div>
+            <small>Opens at 8:00 PM</small>
+        </div>
+
+        <div class="card">
+            <h2>10 PM</h2>
+            <div id="slot22">🔒 Locked</div>
+            <small>Opens at 10:00 PM</small>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
