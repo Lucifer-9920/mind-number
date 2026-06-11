@@ -25,7 +25,7 @@ window.onload = async function () {
     .select("*");
     .limite(10);
 console.log(data);
-    alert("DATA = " + JSON.stringify(data));
+    alert("ERROE = " + JSON.stringify(data));
     if (data) {
     data.forEach(row => {
         if (row.slot === "12PM")
