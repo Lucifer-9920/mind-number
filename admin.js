@@ -18,11 +18,14 @@ async function saveNumbers() {
     ];
 
     for (const item of updates) {
-        const { error } = await supabaseClient
-            .from("number")
-            .update({ number: parseInt(item.value) })
-            .eq("slot", item.slot);
+const { data, error } = await supabaseClient
+    .from("number")
+    .update({ number: parseInt(item.value) })
+    .eq("slot", item.slot)
+    .select();
 
+alert("DATA = " + JSON.stringify(data));
+alert("ERROR = " + JSON.stringify(error));
         if (error) {
             alert("Error: " + error.message);
             return;
