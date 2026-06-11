@@ -46,5 +46,6 @@ console.log(data);
             document.getElementById("slot22").innerHTML = row.number;
     });
 }
+alert(JSON.stringify(error));
 console.log(error);
 };
