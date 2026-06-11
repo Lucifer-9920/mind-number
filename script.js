@@ -22,7 +22,8 @@ const supabaseClient = window.supabase.createClient(
     SUPABASE_KEY
 );
 
-async function loadNumbers() {
+async function loadNumbers()
+document.getElementById("slot12").innerHTML = "TEST";{
     const { data, error } = await supabaseClient
         .from("number")
         .select("*");
