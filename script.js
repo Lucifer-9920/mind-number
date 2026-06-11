@@ -14,10 +14,23 @@ window.onload = function () {
     updateTime();
     setInterval(updateTime, 1000);
 
-    document.getElementById("slot12").innerHTML = "47";
-    document.getElementById("slot14").innerHTML = "83";
-    document.getElementById("slot16").innerHTML = "15";
-    document.getElementById("slot18").innerHTML = "92";
-    document.getElementById("slot20").innerHTML = "34";
-    document.getElementById("slot22").innerHTML = "76";
+    const hour = new Date().getHours();
+
+    document.getElementById("slot12").innerHTML =
+        hour >= 12 ? "47" : "🔒 Locked";
+
+    document.getElementById("slot14").innerHTML =
+        hour >= 14 ? "83" : "🔒 Locked";
+
+    document.getElementById("slot16").innerHTML =
+        hour >= 16 ? "15" : "🔒 Locked";
+
+    document.getElementById("slot18").innerHTML =
+        hour >= 18 ? "92" : "🔒 Locked";
+
+    document.getElementById("slot20").innerHTML =
+        hour >= 20 ? "34" : "🔒 Locked";
+
+    document.getElementById("slot22").innerHTML =
+        hour >= 22 ? "76" : "🔒 Locked";
 };
