@@ -20,12 +20,12 @@ window.onload = async function () {
 
     updateTime();
     setInterval(updateTime, 1000);
-    const { data, error } = await supabaseClient
+const { data, error } = await supabaseClient
     .from("number")
-    .select("*");
-    .limite(10);
+    .select("*")
+    .limit(10);
 console.log(data);
-    alert("ERROE = " + JSON.stringify(data));
+    alert("DATA = " + JSON.stringify(data));
     if (data) {
     data.forEach(row => {
         if (row.slot === "12PM")
