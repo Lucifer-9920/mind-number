@@ -1,0 +1,20 @@
+name: Daily Random Numbers
+
+on:
+  schedule:
+    - cron: '30 18 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate Random Numbers
+        run: |
+          echo "12PM=$((RANDOM%99+1))"
+          echo "2PM=$((RANDOM%99+1))"
+          echo "4PM=$((RANDOM%99+1))"
+          echo "6PM=$((RANDOM%99+1))"
+          echo "8PM=$((RANDOM%99+1))"
+          echo "10PM=$((RANDOM%99+1))"
