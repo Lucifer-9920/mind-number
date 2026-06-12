@@ -8,8 +8,7 @@ const supabaseClient = window.supabase.createClient(
 
 window.onload = async function () {
 
-    document.getElementById("loading").style.display = "none";
-    document.getElementById("app").style.display = "block";
+    
 
     function updateTime() {
         const now = new Date();
@@ -59,6 +58,8 @@ window.onload = async function () {
         if (row.slot === "10PM")
             document.getElementById("slot22").innerHTML =
                 hour >= 22 ? row.number : "🔒 Locked";
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("app").style.display = "block";
     });
 
 };
