@@ -10,11 +10,55 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Generate Random Numbers
+      - name: Generate and Update Numbers
         run: |
-          echo "12PM=$((RANDOM%99+1))"
-          echo "2PM=$((RANDOM%99+1))"
-          echo "4PM=$((RANDOM%99+1))"
-          echo "6PM=$((RANDOM%99+1))"
-          echo "8PM=$((RANDOM%99+1))"
-          echo "10PM=$((RANDOM%99+1))"
+          N12=$((RANDOM%99+1))
+          N14=$((RANDOM%99+1))
+          N16=$((RANDOM%99+1))
+          N18=$((RANDOM%99+1))
+          N20=$((RANDOM%99+1))
+          N22=$((RANDOM%99+1))
+
+          curl -X PATCH "${{ secrets.SUPABASE_URL }}/rest/v1/number?slot=eq.12PM" \
+          -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+          -H "Content-Type: application/json" \
+          -H "Prefer: return=minimal" \
+          -d "{\"number\":$N12}"
+
+          curl -X PATCH "${{ secrets.SUPABASE_URL }}/rest/v1/number?slot=eq.2PM" \
+          -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+          -H "Content-Type: application/json" \
+          -H "Prefer: return=minimal" \
+          -d "{\"number\":$N14}"
+
+          curl -X PATCH "${{ secrets.SUPABASE_URL }}/rest/v1/number?slot=eq.4PM" \
+          -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+          -H "Content-Type: application/json" \
+          -H "Prefer: return=minimal" \
+          -d "{\"number\":$N16}"
+
+          curl -X PATCH "${{ secrets.SUPABASE_URL }}/rest/v1/number?slot=eq.6PM" \
+          -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+          -H "Content-Type: application/json" \
+          -H "Prefer: return=minimal" \
+          -d "{\"number\":$N18}"
+
+          curl -X PATCH "${{ secrets.SUPABASE_URL }}/rest/v1/number?slot=eq.8PM" \
+          -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+          -H "Content-Type: application/json" \
+          -H "Prefer: return=minimal" \
+          -d "{\"number\":$N20}"
+
+          curl -X PATCH "${{ secrets.SUPABASE_URL }}/rest/v1/number?slot=eq.10PM" \
+          -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+          -H "Content-Type: application/json" \
+          -H "Prefer: return=minimal" \
+          -d "{\"number\":$N22}"
+
+          echo "Numbers Updated Successfully"
