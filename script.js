@@ -6,48 +6,44 @@ const supabaseClient = window.supabase.createClient(
     SUPABASE_KEY
 );
 
-async function loadNumbers() {
-
-    const hour = new Date().getHours();
-
-    const { data, error } = await supabaseClient
-        .from("number")
-        .select("*");
-
-    if (error) {
-        console.log(error);
-        return;
+@keyframes unlockGlow {
+    0%{
+        transform:scale(0.8);
+        opacity:0;
     }
 
-    data.forEach(row => {
+    50%{
+        transform:scale(1.15);
+        opacity:1;
+    }
 
-        if (row.slot === "12PM")
-            document.getElementById("slot12").innerHTML =
-                hour >= 12 ? row.number : "🔒 Locked";
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
 
-        if (row.slot === "2PM")
-            document.getElementById("slot14").innerHTML =
-                hour >= 14 ? row.number : "🔒 Locked";
+.unlocked{
+    animation:unlockGlow 1s ease;
+}
 
-        if (row.slot === "4PM")
-            document.getElementById("slot16").innerHTML =
-                hour >= 16 ? row.number : "🔒 Locked";
+.glow{
+    border:2px solid gold;
+    box-shadow:
+        0 0 20px gold,
+        0 0 40px gold,
+        0 0 60px rgba(255,215,0,0.7);
+}
 
-        if (row.slot === "6PM")
-            document.getElementById("slot18").innerHTML =
-                hour >= 18 ? row.number : "🔒 Locked";
-
-        if (row.slot === "8PM")
-            document.getElementById("slot20").innerHTML =
-                hour >= 20 ? row.number : "🔒 Locked";
-
-        if (row.slot === "10PM")
-            document.getElementById("slot22").innerHTML =
-                hour >= 22 ? row.number : "🔒 Locked";
-    });
-
-    document.getElementById("loading").style.display = "none";
-    document.getElementById("app").style.display = "block";
+.new-badge{
+    display:inline-block;
+    margin-left:8px;
+    padding:4px 8px;
+    background:gold;
+    color:black;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
 }
 
 window.onload = async function () {
