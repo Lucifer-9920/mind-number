@@ -6,44 +6,72 @@ const supabaseClient = window.supabase.createClient(
     SUPABASE_KEY
 );
 
-@keyframes unlockGlow {
-    0%{
-        transform:scale(0.8);
-        opacity:0;
+async function loadNumbers() {
+
+    const hour = new Date().getHours();
+
+    const { data, error } = await supabaseClient
+        .from("number")
+        .select("*");
+
+    if (error) {
+        console.log(error);
+        return;
     }
 
-    50%{
-        transform:scale(1.15);
-        opacity:1;
-    }
+    data.forEach(row => {
 
-    100%{
-        transform:scale(1);
-        opacity:1;
-    }
-}
+        let slotId = "";
+        let unlockHour = 0;
 
-.unlocked{
-    animation:unlockGlow 1s ease;
-}
+        if (row.slot === "12PM") {
+            slotId = "slot12";
+            unlockHour = 12;
+        }
 
-.glow{
-    border:2px solid gold;
-    box-shadow:
-        0 0 20px gold,
-        0 0 40px gold,
-        0 0 60px rgba(255,215,0,0.7);
-}
+        if (row.slot === "2PM") {
+            slotId = "slot14";
+            unlockHour = 14;
+        }
 
-.new-badge{
-    display:inline-block;
-    margin-left:8px;
-    padding:4px 8px;
-    background:gold;
-    color:black;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:bold;
+        if (row.slot === "4PM") {
+            slotId = "slot16";
+            unlockHour = 16;
+        }
+
+        if (row.slot === "6PM") {
+            slotId = "slot18";
+            unlockHour = 18;
+        }
+
+        if (row.slot === "8PM") {
+            slotId = "slot20";
+            unlockHour = 20;
+        }
+
+        if (row.slot === "10PM") {
+            slotId = "slot22";
+            unlockHour = 22;
+        }
+
+        const element = document.getElementById(slotId);
+        const card = element.parentElement;
+
+        if (hour >= unlockHour) {
+            element.innerHTML = row.number;
+
+            element.classList.add("unlocked");
+            card.classList.add("glow");
+        } else {
+            element.innerHTML = "🔒 Locked";
+
+            element.classList.remove("unlocked");
+            card.classList.remove("glow");
+        }
+    });
+
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("app").style.display = "block";
 }
 
 window.onload = async function () {
