@@ -6,21 +6,7 @@ const supabaseClient = window.supabase.createClient(
     SUPABASE_KEY
 );
 
-window.onload = async function () {
-
-    
-
-    function updateTime() {
-        const now = new Date();
-
-        document.getElementById("liveDateTime").innerHTML =
-            now.toLocaleDateString() +
-            " | " +
-            now.toLocaleTimeString();
-    }
-
-    updateTime();
-    setInterval(updateTime, 1000);
+async function loadNumbers() {
 
     const hour = new Date().getHours();
 
@@ -58,8 +44,40 @@ window.onload = async function () {
         if (row.slot === "10PM")
             document.getElementById("slot22").innerHTML =
                 hour >= 22 ? row.number : "🔒 Locked";
-    document.getElementById("loading").style.display = "none";
-    document.getElementById("app").style.display = "block";
     });
 
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("app").style.display = "block";
+}
+
+window.onload = async function () {
+
+    function updateTime() {
+        const now = new Date();
+
+        document.getElementById("liveDateTime").innerHTML =
+            now.toLocaleDateString() +
+            " | " +
+            now.toLocaleTimeString();
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    await loadNumbers();
+
+    supabaseClient
+        .channel("number-changes")
+        .on(
+            "postgres_changes",
+            {
+                event: "*",
+                schema: "public",
+                table: "number"
+            },
+            async () => {
+                await loadNumbers();
+            }
+        )
+        .subscribe();
 };
