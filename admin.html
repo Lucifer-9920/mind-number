@@ -2,7 +2,8 @@
 const password = prompt("Enter Admin Password");
 
 if (password !== "Lucifer@2026") {
-    document.body.innerHTML = "<h1>Access Denied</h1>";
+    alert("Wrong Password");
+    window.location.href = "index.html";
 }
 </script>
 
