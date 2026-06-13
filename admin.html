@@ -1,16 +1,17 @@
-<script>
-const password = prompt("Enter Admin Password");
-
-if (password !== "Lucifer@2026") {
-    alert("Wrong Password");
-    window.location.href = "index.html";
-}
-</script>
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Mind Number Admin</title>
+
+    <script>
+        const password = prompt("Enter Admin Password");
+
+        if (password !== "Lucifer@2026") {
+            document.write("<h1>Access Denied</h1>");
+            throw new Error("Access Denied");
+        }
+    </script>
+
 </head>
 <body>
 
