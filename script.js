@@ -65,7 +65,8 @@ window.onload = async function () {
     setInterval(updateTime, 1000);
 
     await loadNumbers();
-
+    setInterval(loadNumbers, 10000);
+    
     supabaseClient
         .channel("number-changes")
         .on(
