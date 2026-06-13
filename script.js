@@ -75,14 +75,14 @@ async function loadNumbers() {
 
 window.onload = async function () {
 
-    function updateTime() {
+   function updateTime() {
     const now = new Date();
 
     document.getElementById("liveDateTime").innerHTML =
         now.toLocaleDateString() +
         " | " +
         now.toLocaleTimeString();
-
+}
     const slots = [
         { hour: 12, id: "time12" },
         { hour: 14, id: "time14" },
