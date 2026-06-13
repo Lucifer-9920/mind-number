@@ -58,8 +58,7 @@ async function loadNumbers() {
         const card = element.parentElement;
 
         if (hour >= unlockHour) {
-            element.innerHTML = row.number;
-
+            element.innerHTML = row.number + ' <span class="new-badge">LIVE</span>';
             element.classList.add("unlocked");
             card.classList.add("glow");
         } else {
@@ -89,7 +88,7 @@ window.onload = async function () {
     setInterval(updateTime, 1000);
 
     await loadNumbers();
-    setInterval(loadNumbers, 3000);
+    setInterval(loadNumbers, 1000);
     
     supabaseClient
         .channel("number-changes")
