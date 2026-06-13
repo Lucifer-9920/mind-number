@@ -1,5 +1,6 @@
 const SUPABASE_URL = "https://botfmbszxqpnelyiccdi.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJvdGZtYnN6eHFwbmVseWljY2RpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgzMTksImV4cCI6MjA5NjY4NDMxOX0.AMyQ1LlyS58qwqCmAiqFv7xlhL9R_wJP5G48wuR5AHQ";
+
+const SUPABASE_KEY = "sb_publishable_62Ut3sGstDGcPB0Io3k-dQ_iJaovqHd";
 
 const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
@@ -7,7 +8,7 @@ const supabaseClient = window.supabase.createClient(
 );
 
 async function saveNumbers() {
-    alert("Button Clicked");
+
     const updates = [
         { slot: "12PM", value: document.getElementById("n12").value },
         { slot: "2PM", value: document.getElementById("n14").value },
@@ -18,14 +19,18 @@ async function saveNumbers() {
     ];
 
     for (const item of updates) {
-const { data, error } = await supabaseClient
-    .from("number")
-    .update({ number: parseInt(item.value) })
-    .eq("slot", item.slot)
-    .select();
 
-alert("DATA = " + JSON.stringify(data));
-alert("ERROR = " + JSON.stringify(error));
+        if (item.value === "") {
+            continue;
+        }
+
+        const { error } = await supabaseClient
+            .from("number")
+            .update({
+                number: parseInt(item.value)
+            })
+            .eq("slot", item.slot);
+
         if (error) {
             alert("Error: " + error.message);
             return;
