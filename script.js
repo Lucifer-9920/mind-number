@@ -119,3 +119,24 @@ window.onload = async function () {
 
     });
 }
+updateTime();
+setInterval(updateTime, 1000);
+
+await loadNumbers();
+setInterval(loadNumbers, 1000);
+
+supabaseClient
+    .channel("number-changes")
+    .on(
+        "postgres_changes",
+        {
+            event: "*",
+            schema: "public",
+            table: "number"
+        },
+        async () => {
+            await loadNumbers();
+        }
+    )
+    .subscribe();
+};
