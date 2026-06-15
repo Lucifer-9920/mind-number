@@ -77,32 +77,45 @@ async function loadNumbers() {
 window.onload = async function () {
 
     function updateTime() {
-        const now = new Date();
 
-        document.getElementById("liveDateTime").innerHTML =
-            now.toLocaleDateString() +
-            " | " +
-            now.toLocaleTimeString();
-    }
+    const now = new Date();
 
-    updateTime();
-    setInterval(updateTime, 1000);
+    document.getElementById("liveDateTime").innerHTML =
+        now.toLocaleDateString() +
+        " | " +
+        now.toLocaleTimeString();
 
-    await loadNumbers();
-    setInterval(loadNumbers, 1000);
+    const slots = [
+        { hour: 12, id: "time12" },
+        { hour: 14, id: "time14" },
+        { hour: 16, id: "time16" },
+        { hour: 18, id: "time18" },
+        { hour: 20, id: "time20" },
+        { hour: 22, id: "time22" }
+    ];
 
-    supabaseClient
-        .channel("number-changes")
-        .on(
-            "postgres_changes",
-            {
-                event: "*",
-                schema: "public",
-                table: "number"
-            },
-            async () => {
-                await loadNumbers();
-            }
-        )
-        .subscribe();
-};
+    slots.forEach(slot => {
+
+        const target = new Date();
+        target.setHours(slot.hour, 0, 0, 0);
+
+        if (now < target) {
+
+            const diff = target - now;
+
+            const h = Math.floor(diff / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+
+            document.getElementById(slot.id).innerHTML =
+                `⏳ Opens in ${h}h ${m}m ${s}s`;
+
+        } else {
+
+            document.getElementById(slot.id).innerHTML =
+                "✅ Open";
+
+        }
+
+    });
+}
