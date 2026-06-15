@@ -1,33 +1,38 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html>
 <head>
     <title>Mind Number Admin</title>
+</head><body style="display:none;" id="body"><script>
+const password = prompt("🔐 Enter Admin Password");
 
-    <script>
-        const password = prompt("Enter Admin Password");
+if (password === "Lucifer@2026") {
 
-        if (password !== "Lucifer@2026") {
-            document.write("<h1>Access Denied</h1>");
-            throw new Error("Access Denied");
-        }
-    </script>
+    alert("✅ Access Granted");
 
-</head>
-<body>
+    document.getElementById("body").style.display = "block";
 
-    <h1>Admin Panel</h1>
+} else {
 
-    <input id="n12" placeholder="12 PM Number"><br><br>
-    <input id="n14" placeholder="2 PM Number"><br><br>
-    <input id="n16" placeholder="4 PM Number"><br><br>
-    <input id="n18" placeholder="6 PM Number"><br><br>
-    <input id="n20" placeholder="8 PM Number"><br><br>
-    <input id="n22" placeholder="10 PM Number"><br><br>
+    alert("❌ Wrong Password");
 
-    <button onclick="saveNumbers()">Save Numbers</button>
+    document.body.innerHTML = `
+        <div style="
+            text-align:center;
+            margin-top:100px;
+            font-family:Arial;
+        ">
+            <h1>🚫 Access Denied</h1>
+            <p>Wrong Password</p>
+        </div>
+    `;
+}
+</script><h1>Admin Panel</h1><input id="n12" placeholder="12 PM Number"><br><br>
+<input id="n14" placeholder="2 PM Number"><br><br>
+<input id="n16" placeholder="4 PM Number"><br><br>
+<input id="n18" placeholder="6 PM Number"><br><br>
+<input id="n20" placeholder="8 PM Number"><br><br>
+<input id="n22" placeholder="10 PM Number"><br><br>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="admin.js"></script>
+<button onclick="saveNumbers()">Save Numbers</button>
 
-</body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="admin.js"></script></body>
 </html>
