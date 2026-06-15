@@ -58,7 +58,9 @@ async function loadNumbers() {
         const card = element.parentElement;
 
         if (hour >= unlockHour) {
-            element.innerHTML = row.number + ' <span class="new-badge">LIVE</span>';
+          element.innerHTML =
+    row.number +
+    '<br><span class="live-badge">🔴 LIVE</span>';
             element.classList.add("unlocked");
             card.classList.add("glow");
         } else {
