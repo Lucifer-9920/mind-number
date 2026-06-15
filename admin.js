@@ -3,39 +3,47 @@ const SUPABASE_URL = "https://botfmbszxqpnelyiccdi.supabase.co";
 const SUPABASE_KEY = "sb_publishable_62Ut3sGstDGcPB0Io3k-dQ_iJaovqHd";
 
 const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
 async function saveNumbers() {
 
-    const updates = [
-        { slot: "12PM", value: document.getElementById("n12").value },
-        { slot: "2PM", value: document.getElementById("n14").value },
-        { slot: "4PM", value: document.getElementById("n16").value },
-        { slot: "6PM", value: document.getElementById("n18").value },
-        { slot: "8PM", value: document.getElementById("n20").value },
-        { slot: "10PM", value: document.getElementById("n22").value }
-    ];
+const password = prompt("Enter Admin Password");
 
-    for (const item of updates) {
+if (password !== "ARYAN123") {
+    alert("Wrong Password!");
+    return;
+}
 
-        if (item.value === "") {
-            continue;
-        }
+const updates = [
+    { slot: "12PM", value: document.getElementById("n12").value },
+    { slot: "2PM", value: document.getElementById("n14").value },
+    { slot: "4PM", value: document.getElementById("n16").value },
+    { slot: "6PM", value: document.getElementById("n18").value },
+    { slot: "8PM", value: document.getElementById("n20").value },
+    { slot: "10PM", value: document.getElementById("n22").value }
+];
 
-        const { error } = await supabaseClient
-            .from("number")
-            .update({
-                number: parseInt(item.value)
-            })
-            .eq("slot", item.slot);
+for (const item of updates) {
 
-        if (error) {
-            alert("Error: " + error.message);
-            return;
-        }
+    if (item.value === "") {
+        continue;
     }
 
-    alert("Numbers Saved Successfully!");
+    const { error } = await supabaseClient
+        .from("number")
+        .update({
+            number: parseInt(item.value)
+        })
+        .eq("slot", item.slot);
+
+    if (error) {
+        alert("Error: " + error.message);
+        return;
+    }
+}
+
+alert("Numbers Saved Successfully!");
+
 }
