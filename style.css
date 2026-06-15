@@ -124,3 +124,18 @@ body{
     }
 
 }
+.top-icons{
+    position:absolute;
+    top:20px;
+    right:20px;
+}
+
+.top-icons a{
+    text-decoration:none;
+    font-size:30px;
+    transition:0.3s;
+}
+
+.top-icons a:hover{
+    transform:scale(1.2);
+}
