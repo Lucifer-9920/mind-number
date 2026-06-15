@@ -9,8 +9,45 @@
 </head>
 
 <body>
+
+<div class="header">
+    <h1>📜 History</h1>
+</div>
+
+<div style="max-width:800px;margin:auto;padding:20px;">
+
+<select id="monthSelect" style="width:100%;padding:12px;border-radius:10px;margin-bottom:20px;">
+    <option>June 2026</option>
+    <option>May 2026</option>
+    <option>April 2026</option>
+    <option>March 2026</option>
+    <option>February 2026</option>
+    <option>January 2026</option>
+</select>
+
+<div class="card" id="historyData">
+
+<h2>June 2026</h2>
+
+<p>01 Jun → 47 | 83 | 15 | 92 | 34 | 76</p>
+<p>02 Jun → 24 | 66 | 41 | 88 | 53 | 19</p>
+<p>03 Jun → 38 | 72 | 14 | 67 | 25 | 81</p>
+
+</div>
+
+<br>
+
+<a href="index.html" style="text-decoration:none;">
+    <button style="width:100%;padding:12px;border:none;border-radius:10px;">
+        ⬅ Back To Home
+    </button>
+</a>
+
+</div>
+
 <script>
 const historyData = {
+
 "June 2026": `
 <h2>June 2026</h2>
 <p>01 Jun → 47 | 83 | 15 | 92 | 34 | 76</p>
@@ -48,46 +85,14 @@ const historyData = {
 <p>01 Jan → 99 | 41 | 63 | 28 | 74 | 16</p>
 <p>02 Jan → 53 | 20 | 81 | 37 | 65 | 14</p>
 `
+
 };
 
 document.getElementById("monthSelect").addEventListener("change", function() {
-document.getElementById("historyData").innerHTML =
-historyData[this.value];
+    document.getElementById("historyData").innerHTML =
+    historyData[this.value];
 });
 </script>
-<div class="header">
-    <h1>📜 History</h1>
-</div>
-
-<div style="max-width:800px;margin:auto;">
-
-<select id="monthSelect" style="width:100%;padding:12px;border-radius:10px;margin-bottom:20px;">
-    <option>June 2026</option>
-    <option>May 2026</option>
-    <option>April 2026</option>
-    <option>March 2026</option>
-    <option>February 2026</option>
-    <option>January 2026</option>
-</select>
-
-<div class="card" id="historyData">
-
-<h2>June 2026</h2>
-
-<p>01 Jun → 47 | 83 | 15 | 92 | 34 | 76</p>
-<p>02 Jun → 24 | 66 | 41 | 88 | 53 | 19</p>
-<p>03 Jun → 38 | 72 | 14 | 67 | 25 | 81</p>
-
-</div>
-<br>
-
-<a href="index.html" style="text-decoration:none;">
-    <button style="width:100%;padding:12px;border:none;border-radius:10px;">
-        ⬅ Back To Home
-    </button>
-</a>
-
-</div>
 
 </body>
 </html>
