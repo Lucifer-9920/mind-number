@@ -9,7 +9,52 @@
 </head>
 
 <body>
+<script>
+const historyData = {
+"June 2026": `
+<h2>June 2026</h2>
+<p>01 Jun → 47 | 83 | 15 | 92 | 34 | 76</p>
+<p>02 Jun → 24 | 66 | 41 | 88 | 53 | 19</p>
+<p>03 Jun → 38 | 72 | 14 | 67 | 25 | 81</p>
+`,
 
+"May 2026": `
+<h2>May 2026</h2>
+<p>01 May → 11 | 52 | 74 | 23 | 68 | 90</p>
+<p>02 May → 35 | 61 | 28 | 84 | 17 | 49</p>
+<p>03 May → 72 | 15 | 93 | 46 | 21 | 57</p>
+`,
+
+"April 2026": `
+<h2>April 2026</h2>
+<p>01 Apr → 22 | 44 | 66 | 88 | 10 | 32</p>
+<p>02 Apr → 14 | 39 | 58 | 71 | 26 | 85</p>
+`,
+
+"March 2026": `
+<h2>March 2026</h2>
+<p>01 Mar → 18 | 27 | 64 | 73 | 42 | 91</p>
+<p>02 Mar → 56 | 11 | 87 | 34 | 62 | 29</p>
+`,
+
+"February 2026": `
+<h2>February 2026</h2>
+<p>01 Feb → 12 | 55 | 77 | 33 | 89 | 21</p>
+<p>02 Feb → 67 | 24 | 48 | 90 | 13 | 35</p>
+`,
+
+"January 2026": `
+<h2>January 2026</h2>
+<p>01 Jan → 99 | 41 | 63 | 28 | 74 | 16</p>
+<p>02 Jan → 53 | 20 | 81 | 37 | 65 | 14</p>
+`
+};
+
+document.getElementById("monthSelect").addEventListener("change", function() {
+document.getElementById("historyData").innerHTML =
+historyData[this.value];
+});
+</script>
 <div class="header">
     <h1>📜 History</h1>
 </div>
@@ -25,17 +70,15 @@
     <option>January 2026</option>
 </select>
 
-<div class="card">
-    <h2>June 2026</h2>
+<div class="card" id="historyData">
 
-    <p>01 Jun → 47 | 83 | 15 | 92 | 34 | 76</p>
-    <p>02 Jun → 24 | 66 | 41 | 88 | 53 | 19</p>
-    <p>03 Jun → 38 | 72 | 14 | 67 | 25 | 81</p>
-    <p>04 Jun → 51 | 29 | 74 | 18 | 93 | 40</p>
-    <p>05 Jun → 61 | 17 | 55 | 84 | 22 | 71</p>
+<h2>June 2026</h2>
+
+<p>01 Jun → 47 | 83 | 15 | 92 | 34 | 76</p>
+<p>02 Jun → 24 | 66 | 41 | 88 | 53 | 19</p>
+<p>03 Jun → 38 | 72 | 14 | 67 | 25 | 81</p>
 
 </div>
-
 <br>
 
 <a href="index.html" style="text-decoration:none;">
