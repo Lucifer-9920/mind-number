@@ -9,9 +9,9 @@ SUPABASE_KEY
 
 async function saveNumbers() {
 
-const password = prompt("Lucifer@2026");
+const password = prompt("ENTER ADMIN PASSWORD");
 
-if (password !== "ARYAN123") {
+if (password !== "Lucifer@2026") {
     alert("Wrong Password!");
     return;
 }
