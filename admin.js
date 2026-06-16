@@ -7,6 +7,18 @@ SUPABASE_URL,
 SUPABASE_KEY
 );
 
-function saveNumbers() {
-alert("Button Working");
+async function saveNumbers() {
+
+    alert("Button Working");
+
+    const { data, error } = await supabaseClient
+        .from("number")
+        .select("*");
+
+    if (error) {
+        alert("Supabase Error: " + error.message);
+    } else {
+        alert("Supabase Connected");
+        console.log(data);
+    }
 }
