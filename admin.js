@@ -40,7 +40,7 @@ for (const item of updates) {
         .eq("slot", item.slot);
 
     if (error) {
-        alert("Error: " + error.message);
+        alert("Update Error: " + error.message);
         return;
     }
 
