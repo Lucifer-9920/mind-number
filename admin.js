@@ -46,6 +46,5 @@ for (const item of updates) {
 }
 
 alert("Numbers Saved Successfully!");
-```
 
 }
