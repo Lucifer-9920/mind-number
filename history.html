@@ -24,7 +24,11 @@
     <option>February 2026</option>
     <option>January 2026</option>
 </select>
+<div class="card" id="realHistory">
+    Loading Real History...
+</div>
 
+<br>
 <div class="card" id="historyData">
 
 <h2>June 2026</h2>
@@ -251,6 +255,48 @@ document.getElementById("monthSelect").addEventListener("change", function() {
     historyData[this.value];
 });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
+const SUPABASE_URL = "https://botfmbszxqpnelyiccdi.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_62Ut3sGstDGcPB0Io3k-dQ_iJaovqHd";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+async function loadRealHistory() {
+
+    const { data, error } = await supabaseClient
+        .from("results")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        document.getElementById("realHistory").innerHTML =
+            "Error Loading History";
+        return;
+    }
+
+    let html = "<h2>Latest Real Results</h2>";
+
+    data.forEach(row => {
+        html += `
+        <p>
+        ${row.result_date}
+        →
+        ${row.slot}
+        →
+        ${row.number}
+        </p>`;
+    });
+
+    document.getElementById("realHistory").innerHTML = html;
+}
+
+loadRealHistory();
+</script>
 </body>
 </html>
