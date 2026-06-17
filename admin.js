@@ -36,13 +36,14 @@ for (const item of updates) {
         return;
     }
 
-    await supabaseClient
-        .from("history")
-        .insert({
-            history_date: new Date().toISOString().split("T")[0],
-            slot: item.slot,
-            number: parseInt(item.value)
-        });
+  await supabaseClient
+.from("results")
+.insert({
+result_date: new Date().toISOString().split("T")[0],
+slot: item.slot,
+number: parseInt(item.value)
+});
+
 }
 
 alert("Numbers Saved Successfully!");
