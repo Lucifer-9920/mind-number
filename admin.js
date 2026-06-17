@@ -35,14 +35,18 @@ for (const item of updates) {
         alert("Update Error: " + error.message);
         return;
     }
-
-  await supabaseClient
+const { error: resultError } = await supabaseClient
 .from("results")
 .insert({
 result_date: new Date().toISOString().split("T")[0],
 slot: item.slot,
 number: parseInt(item.value)
 });
+
+if (resultError) {
+alert(resultError.message);
+}
+
 
 }
 
