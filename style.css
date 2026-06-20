@@ -229,3 +229,8 @@ body{
 }
 
 }
+.today-row{
+    background:#16a34a !important;
+    color:white !important;
+    font-weight:bold;
+}
