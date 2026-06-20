@@ -183,7 +183,7 @@ async function loadMonthlyChart() {
 
         html += `
         <tr>
-            <td>${date.slice(8)}-${date.slice(5,7)}</td>
+            <td>${date.split("-").reverse().join("/")}</td>
             <td>${grouped[date].DB}</td>
             <td>${grouped[date].SG}</td>
             <td>${grouped[date].FB}</td>
