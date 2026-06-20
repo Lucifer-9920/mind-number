@@ -64,6 +64,9 @@ jobs:
           echo "Numbers Updated Successfully"        
 
           TODAY=$(date +%F)
+          curl -X DELETE "${{ secrets.SUPABASE_URL }}/rest/v1/results?result_date=eq.$TODAY" \
+-H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+-H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}"
 
           curl -X POST "${{ secrets.SUPABASE_URL }}/rest/v1/results" \
           -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
