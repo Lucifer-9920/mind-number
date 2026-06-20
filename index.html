@@ -86,7 +86,50 @@
     </div>
 
 </div>
+<div class="card" style="margin-top:20px;">
+    
+    <h2>📊 Monthly Results</h2>
 
+    <select id="monthSelect" style="
+        width:100%;
+        padding:10px;
+        border-radius:10px;
+        margin-bottom:15px;
+    ">
+        <option value="2026-06">June 2026</option>
+    </select>
+
+    <div style="overflow-x:auto;">
+
+        <table style="
+            width:100%;
+            border-collapse:collapse;
+            text-align:center;
+        ">
+
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>DB</th>
+                    <th>SG</th>
+                    <th>FB</th>
+                    <th>GB</th>
+                    <th>GL</th>
+                    <th>DS</th>
+                </tr>
+            </thead>
+
+            <tbody id="monthlyTable">
+                <tr>
+                    <td colspan="7">Loading...</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="script.js"></script>
 
