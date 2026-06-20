@@ -178,3 +178,41 @@ body{
     50%{opacity:0.3;}
     100%{opacity:1;}
 }
+#monthlyChart{
+overflow-x:auto;
+}
+
+#monthlyChart table{
+width:100%;
+font-size:12px;
+border-collapse:collapse;
+}
+
+#monthlyChart th,
+#monthlyChart td{
+padding:6px;
+text-align:center;
+border:1px solid #444;
+}
+
+#monthlyChart th{
+background:#111;
+color:#ffd700;
+}
+
+#monthlyChart td{
+color:#fff;
+}
+
+@media(max-width:600px){
+
+#monthlyChart table{
+font-size:10px;
+}
+
+#monthlyChart th,
+#monthlyChart td{
+padding:4px;
+}
+
+}
