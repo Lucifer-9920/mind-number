@@ -62,3 +62,17 @@ jobs:
           -d "{\"number\":$N22}"
 
           echo "Numbers Updated Successfully"
+TODAY=$(date +%F)
+
+curl -X POST "${{ secrets.SUPABASE_URL }}/rest/v1/results" \
+-H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+-H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+-H "Content-Type: application/json" \
+-d "[
+{\"result_date\":\"$TODAY\",\"slot\":\"12PM\",\"number\":$N12},
+{\"result_date\":\"$TODAY\",\"slot\":\"2PM\",\"number\":$N14},
+{\"result_date\":\"$TODAY\",\"slot\":\"4PM\",\"number\":$N16},
+{\"result_date\":\"$TODAY\",\"slot\":\"6PM\",\"number\":$N18},
+{\"result_date\":\"$TODAY\",\"slot\":\"8PM\",\"number\":$N20},
+{\"result_date\":\"$TODAY\",\"slot\":\"10PM\",\"number\":$N22}
+]"
