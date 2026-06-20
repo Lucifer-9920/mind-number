@@ -123,6 +123,7 @@ updateTime();
 setInterval(updateTime, 1000);
 
 await loadNumbers();
+loadMonthlyChart();
 setInterval(loadNumbers, 1000);
 
 supabaseClient
@@ -140,3 +141,58 @@ supabaseClient
     )
     .subscribe();
 };
+async function loadMonthlyChart() {
+
+    const { data, error } = await supabaseClient
+        .from("results")
+        .select("*")
+        .order("result_date", { ascending: false });
+
+    if (error) {
+        console.log(error);
+        return;
+    }
+
+    let grouped = {};
+
+    data.forEach(row => {
+
+        if (!grouped[row.result_date]) {
+            grouped[row.result_date] = {
+                DB: "-",
+                SG: "-",
+                FB: "-",
+                GB: "-",
+                GL: "-",
+                DS: "-"
+            };
+        }
+
+        if (row.slot === "12PM") grouped[row.result_date].DB = row.number;
+        if (row.slot === "2PM") grouped[row.result_date].SG = row.number;
+        if (row.slot === "4PM") grouped[row.result_date].FB = row.number;
+        if (row.slot === "6PM") grouped[row.result_date].GB = row.number;
+        if (row.slot === "8PM") grouped[row.result_date].GL = row.number;
+        if (row.slot === "10PM") grouped[row.result_date].DS = row.number;
+
+    });
+
+    let html = "";
+
+    Object.keys(grouped).forEach(date => {
+
+        html += `
+        <tr>
+            <td>${date}</td>
+            <td>${grouped[date].DB}</td>
+            <td>${grouped[date].SG}</td>
+            <td>${grouped[date].FB}</td>
+            <td>${grouped[date].GB}</td>
+            <td>${grouped[date].GL}</td>
+            <td>${grouped[date].DS}</td>
+        </tr>`;
+    });
+
+    document.getElementById("monthlyTable").innerHTML =
+        html || "<tr><td colspan='7'>No Data</td></tr>";
+        }
