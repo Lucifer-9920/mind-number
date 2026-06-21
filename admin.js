@@ -35,3 +35,7 @@ for (const item of updates) {
         alert("Update Error: " + error.message);
         return;
     }
+}
+
+alert("Numbers Saved Successfully!");
+}
