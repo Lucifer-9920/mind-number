@@ -234,39 +234,58 @@ body{
     color:white !important;
     font-weight:bold;
 }
-.info-card{
-  background:#000;
-  border:2px solid gold;
-  border-radius:20px;
-  padding:20px;
-  margin:20px;
-  box-shadow:0 0 20px gold;
+.market-card{
+    background:#07182e;
+    border:3px solid #f5c542;
+    border-radius:20px;
+    padding:20px;
+    margin:20px 0;
+    box-shadow:0 0 20px rgba(245,197,66,.4);
 }
 
-.info-card h2{
-  text-align:center;
-  color:gold;
-  margin-bottom:20px;
+.market-card h2{
+    text-align:center;
+    color:#f5c542;
+    font-size:30px;
+    margin-bottom:20px;
 }
 
-.row{
-  display:flex;
-  justify-content:space-between;
-  padding:12px;
-  margin:8px 0;
-  background:#111;
-  border-radius:10px;
-  color:white;
+.market-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:#0a2240;
+    border:2px solid #f5c542;
+
+    border-radius:15px;
+    margin:12px 0;
+    overflow:hidden;
+}
+
+.market-name{
+    color:white;
+    font-weight:bold;
+    font-size:20px;
+    padding:15px;
+}
+
+.market-time{
+    background:linear-gradient(#ffd84d,#f5b400);
+    color:black;
+    font-weight:bold;
+    font-size:22px;
+    padding:15px 25px;
 }
 
 .join-btn{
-  display:block;
-  text-align:center;
-  margin-top:20px;
-  padding:12px;
-  background:#25D366;
-  color:white;
-  text-decoration:none;
-  border-radius:10px;
-  font-weight:bold;
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    padding:15px;
+    border-radius:12px;
+    font-weight:bold;
 }
