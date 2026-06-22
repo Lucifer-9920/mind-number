@@ -13,7 +13,7 @@ jobs:
       - name: Save Results
         run: |
 
-          TODAY=$(date +%F)
+          TODAY=$(TZ='Asia/Kolkata' date +%F)
 
           # Purane records delete karo (same date ke)
           curl -X DELETE "${{ secrets.SUPABASE_URL }}/rest/v1/results?result_date=eq.$TODAY" \
