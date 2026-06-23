@@ -2,7 +2,7 @@ name: Save History
 
 on:
   schedule:
-    - cron: '30 17 * * *'   # 11:00 PM IST
+    - cron: '15 17 * * *'   # 11:00 PM IST
   workflow_dispatch:
 
 jobs:
