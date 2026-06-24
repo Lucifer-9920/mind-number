@@ -2,7 +2,7 @@ name: Save History
 
 on:
   schedule:
-    - cron: '15 17 * * *'   # 11:00 PM IST
+    - cron: '00 19 * * *'   # 11:00 PM IST
   workflow_dispatch:
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
       - name: Save Results
         run: |
 
-          TODAY=$(TZ='Asia/Kolkata' date +%F)
+          TODAY=$(TZ='Asia/Kolkata' date -d "yesterday" +%F)
 
           # Purane records delete karo (same date ke)
           curl -X DELETE "${{ secrets.SUPABASE_URL }}/rest/v1/results?result_date=eq.$TODAY" \
