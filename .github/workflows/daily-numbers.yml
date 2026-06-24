@@ -2,7 +2,7 @@ name: Daily Random Numbers
 
 on:
   schedule:
-    - cron: '30 18 * * *'
+    - cron: '30 19 * * *'
   workflow_dispatch:
 
 jobs:
