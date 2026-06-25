@@ -272,13 +272,29 @@ async function loadRealHistory() {
     const { data, error } = await supabaseClient
         .from("results")
         .select("*")
-        .order("created_at", { ascending: false });
+        .order("result_date", { ascending: false });
 
     if (error) {
         document.getElementById("realHistory").innerHTML =
             "Error Loading History";
         return;
     }
+
+    const slotOrder = {
+        "12PM": 1,
+        "2PM": 2,
+        "4PM": 3,
+        "6PM": 4,
+        "8PM": 5,
+        "10PM": 6
+    };
+
+    data.sort((a, b) => {
+        if (a.result_date !== b.result_date) {
+            return new Date(b.result_date) - new Date(a.result_date);
+        }
+        return slotOrder[a.slot] - slotOrder[b.slot];
+    });
 
     let html = "<h2>Latest Real Results</h2>";
 
