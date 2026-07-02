@@ -124,6 +124,7 @@ setInterval(updateTime, 1000);
 
 await loadNumbers();
 loadMonthlyChart();
+    document.getElementById("monthSelect").addEventListener("change", loadMonthlyChart);
 setInterval(loadNumbers, 1000);
 
 supabaseClient
@@ -143,11 +144,25 @@ supabaseClient
 };
 async function loadMonthlyChart() {
 
-    const { data, error } = await supabaseClient
-        .from("results")
-        .select("*")
-        .order("result_date", { ascending: false });
+    const month = document.getElementById("monthSelect").value;
 
+const months = {
+    "January 2026": "2026-01",
+    "February 2026": "2026-02",
+    "March 2026": "2026-03",
+    "April 2026": "2026-04",
+    "May 2026": "2026-05",
+    "June 2026": "2026-06",
+    "July 2026": "2026-07"
+};
+
+const prefix = months[month];
+
+const { data, error } = await supabaseClient
+    .from("results")
+    .select("*")
+    .like("result_date", `${prefix}%`)
+    .order("result_date", { ascending: false });
     if (error) {
         console.log(error);
         return;
