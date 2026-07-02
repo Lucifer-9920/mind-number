@@ -146,25 +146,29 @@ async function loadMonthlyChart() {
 
     const month = document.getElementById("monthSelect").value;
 
-const months = {
-    "January 2026": "2026-01",
-    "February 2026": "2026-02",
-    "March 2026": "2026-03",
-    "April 2026": "2026-04",
-    "May 2026": "2026-05",
-    "June 2026": "2026-06",
-    "July 2026": "2026-07"
-};
+    const monthMap = {
+        "January 2026": ["2026-01-01","2026-01-31"],
+        "February 2026": ["2026-02-01","2026-02-28"],
+        "March 2026": ["2026-03-01","2026-03-31"],
+        "April 2026": ["2026-04-01","2026-04-30"],
+        "May 2026": ["2026-05-01","2026-05-31"],
+        "June 2026": ["2026-06-01","2026-06-30"],
+        "July 2026": ["2026-07-01","2026-07-31"]
+    };
 
-const prefix = months[month];
+    const [startDate, endDate] = monthMap[month];
 
-const { data, error } = await supabaseClient
-    .from("results")
-    .select("*")
-    .like("result_date", `${prefix}%`)
-    .order("result_date", { ascending: false });
+    const { data, error } = await supabaseClient
+        .from("results")
+        .select("*")
+        .gte("result_date", startDate)
+        .lte("result_date", endDate)
+        .order("result_date", { ascending: false });
+
     if (error) {
         console.log(error);
+        document.getElementById("monthlyTable").innerHTML =
+            "<tr><td colspan='7'>Error Loading</td></tr>";
         return;
     }
 
@@ -174,28 +178,21 @@ const { data, error } = await supabaseClient
 
         if (!grouped[row.result_date]) {
             grouped[row.result_date] = {
-                DB: "-",
-                SG: "-",
-                FB: "-",
-                GB: "-",
-                GL: "-",
-                DS: "-"
+                DB:"-", SG:"-", FB:"-", GB:"-", GL:"-", DS:"-"
             };
         }
 
-        if (row.slot === "12PM") grouped[row.result_date].DB = row.number;
-        if (row.slot === "2PM") grouped[row.result_date].SG = row.number;
-        if (row.slot === "4PM") grouped[row.result_date].FB = row.number;
-        if (row.slot === "6PM") grouped[row.result_date].GB = row.number;
-        if (row.slot === "8PM") grouped[row.result_date].GL = row.number;
-        if (row.slot === "10PM") grouped[row.result_date].DS = row.number;
-
+        if (row.slot=="12PM") grouped[row.result_date].DB=row.number;
+        if (row.slot=="2PM") grouped[row.result_date].SG=row.number;
+        if (row.slot=="4PM") grouped[row.result_date].FB=row.number;
+        if (row.slot=="6PM") grouped[row.result_date].GB=row.number;
+        if (row.slot=="8PM") grouped[row.result_date].GL=row.number;
+        if (row.slot=="10PM") grouped[row.result_date].DS=row.number;
     });
 
-    let html = "";
+    let html="";
 
-    Object.keys(grouped).forEach(date => {
-
+    Object.keys(grouped).forEach(date=>{
         html += `
         <tr>
             <td>${date.split("-").reverse().join("/")}</td>
@@ -210,4 +207,4 @@ const { data, error } = await supabaseClient
 
     document.getElementById("monthlyTable").innerHTML =
         html || "<tr><td colspan='7'>No Data</td></tr>";
-        }
+}
