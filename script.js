@@ -124,7 +124,7 @@ setInterval(updateTime, 1000);
 
 await loadNumbers();
 loadMonthlyChart();
-    document.getElementById("monthSelect").addEventListener("change", loadMonthlyChart);
+document.getElementById("monthSelect").addEventListener("change", loadMonthlyChart);
 setInterval(loadNumbers, 1000);
 
 supabaseClient
