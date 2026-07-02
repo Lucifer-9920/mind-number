@@ -146,18 +146,8 @@ async function loadMonthlyChart() {
 
     const month = document.getElementById("monthSelect").value;
 
-    const monthMap = {
-        "January 2026": ["2026-01-01","2026-01-31"],
-        "February 2026": ["2026-02-01","2026-02-28"],
-        "March 2026": ["2026-03-01","2026-03-31"],
-        "April 2026": ["2026-04-01","2026-04-30"],
-        "May 2026": ["2026-05-01","2026-05-31"],
-        "June 2026": ["2026-06-01","2026-06-30"],
-        "July 2026": ["2026-07-01","2026-07-31"]
-    };
-
-    const [startDate, endDate] = monthMap[month];
-
+const startDate = month + "-01";
+const endDate = month + "-31";
     const { data, error } = await supabaseClient
         .from("results")
         .select("*")
