@@ -17,6 +17,7 @@
 <div style="max-width:800px;margin:auto;padding:20px;">
 
 <select id="monthSelect" style="width:100%;padding:12px;border-radius:10px;margin-bottom:20px;">
+    <option>July 2026</option>
     <option>June 2026</option>
     <option>May 2026</option>
     <option>April 2026</option>
@@ -269,10 +270,24 @@ const supabaseClient = window.supabase.createClient(
 
 async function loadRealHistory() {
 
+    const month = document.getElementById("monthSelect").value;
+
+    const monthMap = {
+        "January 2026": "2026-01",
+        "February 2026": "2026-02",
+        "March 2026": "2026-03",
+        "April 2026": "2026-04",
+        "May 2026": "2026-05",
+        "June 2026": "2026-06",
+        "July 2026": "2026-07"
+    };
+
+    const prefix = monthMap[month];
+
     const { data, error } = await supabaseClient
         .from("results")
         .select("*")
-        .order("result_date", { ascending: false });
+        .like("result_date", `${prefix}%`);
 
     if (error) {
         document.getElementById("realHistory").innerHTML =
@@ -300,19 +315,12 @@ async function loadRealHistory() {
 
     data.forEach(row => {
         html += `
-        <p>
-        ${row.result_date}
-        →
-        ${row.slot}
-        →
-        ${row.number}
-        </p>`;
+        <p>${row.result_date} → ${row.slot} → ${row.number}</p>`;
     });
 
     document.getElementById("realHistory").innerHTML = html;
 }
 
+document.getElementById("monthSelect").addEventListener("change", loadRealHistory);
+
 loadRealHistory();
-</script>
-</body>
-</html>
