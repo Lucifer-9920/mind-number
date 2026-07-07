@@ -270,29 +270,14 @@ const supabaseClient = window.supabase.createClient(
 
 async function loadRealHistory() {
 
-    const month = document.getElementById("monthSelect").value;
-
-    const monthMap = {
-        "January 2026": ["2026-01-01","2026-01-31"],
-        "February 2026": ["2026-02-01","2026-02-28"],
-        "March 2026": ["2026-03-01","2026-03-31"],
-        "April 2026": ["2026-04-01","2026-04-30"],
-        "May 2026": ["2026-05-01","2026-05-31"],
-        "June 2026": ["2026-06-01","2026-06-30"],
-        "July 2026": ["2026-07-01","2026-07-31"]
-    };
-
-    const [startDate, endDate] = monthMap[month];
-
     const { data, error } = await supabaseClient
         .from("results")
         .select("*")
-        .gte("result_date", startDate)
-        .lte("result_date", endDate)
         .order("result_date", { ascending: false });
 
     if (error) {
-        document.getElementById("realHistory").innerHTML = "Error Loading History";
+        document.getElementById("realHistory").innerHTML =
+            "Error Loading History";
         return;
     }
 
@@ -311,20 +296,3 @@ async function loadRealHistory() {
         }
         return slotOrder[a.slot] - slotOrder[b.slot];
     });
-
-    let html = "<h2>Latest Real Results</h2>";
-
-    if (data.length === 0) {
-        html += "<p>No Data Found</p>";
-    } else {
-        data.forEach(row => {
-            html += `<p>${row.result_date} → ${row.slot} → ${row.number}</p>`;
-        });
-    }
-
-    document.getElementById("realHistory").innerHTML = html;
-}
-
-document.getElementById("monthSelect").addEventListener("change", loadRealHistory);
-
-loadRealHistory();
